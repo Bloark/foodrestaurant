@@ -1,9 +1,55 @@
 $yellow: #FFF200;
 
+
+@mixin button(){
+    outline:none;
+    border:none;
+    border-radius: 5rem;
+    color:#333;
+    font-size: 1.6rem;
+    font-weight: bold;
+    text-transform: capitalize;
+    letter-spacing: 2rem;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+    overflow:hidden;
+
+    &::before{
+        content:'';
+        position: absolute;
+        top:0; 
+        left:0;
+        background: $yellow;
+        height: 100%;
+        width:0%;
+        transition: .2s;
+        z-index: -1;
+    }
+
+    &:hover::before{
+        width: 100%;
+    }
+}
+
+@mixin heading() {
+
+    font-size: 4rem;
+    color: #000;
+    padding-top: 7rem;
+    margin-bottom: 2rem;
+
+    span{
+        color: $yellow;
+    }
+    
+}
+
+
 *{
     margin:0; padding: 0;
     box-sizing: border-box;
-    font-family: 'Exo 2' sans-serif;
+    font-family: 'Exo 2', sans-serif;
     transition: all .2s linear;
 
 }
@@ -28,11 +74,21 @@ body{
     padding: 2rem 4rem;
     z-index: 1000;
 
+    .fa-hamburger{
+        font-size: 4rem;
+        z-index: 10000;
+        color: $yellow;
+        cursor:pointer;
+        display: none;
+    }
+
     .logo{
         img{
             height: 5rem;
-        }        
+        }
     }
+
+  
 
     nav{
         ul{
@@ -58,9 +114,226 @@ body{
     }
 }
 
+.header-active{
+    background: #333;
+    height: 6rem;
+    box-shadow: .2rem 0 .5rem #000;
+
+    nav{
+        ul{
+            margin: 0;
+
+        }
+    }
+
+}
+
 #home{
     background: linear-gradient(0deg, rgba(0,0,0,.6),rgba(0,0,0,.6));
+    position:relative;
+    
+    .caixa{
+        h1{
+            font-size: 5rem;
+            font-family: 'Lemonada', sans-serif;
+            font-weight: bolder;
+            text-shadow: .1rem .1rem .3rem #333;
+            color:$yellow;
+        }
+
+        h2{
+            font-size: 3.5rem;
+            font-family: 'Lemonada', sans-serif;
+            font-weight: bolder;
+            text-shadow: .1rem .1rem .3rem #333;
+            color:#fff;
+            margin: 1rem 0;
+        }
+
+        p{
+            font-size: 1.6rem;
+            color: #fff;
+
+        }
+        button{
+            @include button();
+            height: 4rem;
+            width: 14rem;
+            background: #fff;
+
+        }
+    }
+    .video-container{
+        position: absolute;
+        top:0;left: 0;
+        height: 100vh;
+        width: 100%;
+        z-index: -1;
+
+        .vid{
+            position: absolute;           
+            height: 100vh;
+            width: 100%;
+            object-fit: cover;
+            display: none;
+        }
+        .vid1{
+            display: block;
+        }
+    }
+
+    .controls{
+        position: absolute;
+        bottom: 14%; left: 50%;
+        transform: translateX(-58%);
+
+        display: flex;
+
+        .dots{
+            height: 2rem;
+            width: 2rem;
+            cursor: pointer;
+            background: yellow;
+
+            margin: 0 1rem;
+
+            &:hover{
+                background: #fff;
+            }
+        }
+    } 
+}
+
+
+// special menu starts
+
+#special{
+
+    background: #000;
     min-height: 100vh;
 
+    .heading{
+        h1{
+            @include heading();
+            color: #fff;
+        }
 
+        p{
+            color: #ccc;
+            font-size: 2rem;
+        }
+    }
+
+    .card-container{
+        width: 95%;
+        margin: 7rem auto;
+        display: flex;
+        align-items: center;
+        justify-content: wrap;
+
+        .card{
+            height: 40rem;
+            width: 30rem;
+            background: #fff;
+            padding: 1rem;
+            margin: 2rem;
+            text-align: center;
+            
+            img{
+                height: 50%;
+                width: 100%;
+                object-fit: cover;
+
+            }
+
+            p{
+                font-size: 1.4rem;
+                margin: 2rem 0;
+
+            }
+
+            button{
+                @include button();
+                height: 3.5rem;
+                width: 14rem;
+                background: #333;
+                color: #fff;
+
+                &:hover{
+                    color: #333;
+                }
+            }
+            &:hover{
+                transform: scale(.9);
+            }
+        }
+      
+    }
+
+}
+
+
+// special menu ends
+
+
+
+.fa-times{
+    transform: skew(-180deg) rotate(-180deg);
+
+}
+
+
+// media responsive
+@media(max-width:768px){
+
+   html{
+       font-size: 50%;
+   }
+
+    #header{
+        .fa-hamburger{
+            display: block;
+        }
+
+        nav{
+            position: fixed;
+            top:0;
+            left:-120%;
+            width: 35rem;
+            background: #000;        
+            
+            
+            
+            ul{
+                flex-flow:column;
+                justify-content: center;
+                height: 100%;
+
+                li{
+                    margin: 2rem 0;
+
+                    a{
+                        font-size: 3.5rem;
+                        border-radius: 5rem;
+
+                        &:hover{
+                            padding: .5rem 7.5rem;
+                            color: #333;
+                            background: $yellow;
+                        }
+                    }
+                }
+
+            }
+
+        };
+
+        .nav-toggle{
+            left:0%;
+
+        }
+
+    }
+
+    
 }
