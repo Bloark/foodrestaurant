@@ -151,6 +151,23 @@ body {
   width: 100%;
 }
 
+#home .caixa h3 {
+  font-size: 2.0rem;
+  color: #fff;
+  margin: 1rem 0;
+}
+
+#home .caixa h4 {
+  font-size: 3.5rem;
+  color: #FFF200;
+  margin: 1rem 0;
+}
+
+#home .caixa h4 span {
+  font-size: 3.0rem;
+  color: #fff;
+}
+
 #home .video-container {
   position: absolute;
   top: 0;
